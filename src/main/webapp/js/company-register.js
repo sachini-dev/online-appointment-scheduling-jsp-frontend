@@ -30,8 +30,6 @@ function saveEmp() {
                     text("Employee already registered for Login Account. "+
                     "Please Login to your Account!!!");
                     $('#modal-danger').modal('toggle');
-                } else {
-                    
                 }
             },
             error: function (xhr, exception,response) {
@@ -90,8 +88,7 @@ function saveEmp() {
                                     clearInputs();
                                 }
                             })
-                        } else {
-
+                            
                         }
                     },
                     error: function (xhr, exception,response) {

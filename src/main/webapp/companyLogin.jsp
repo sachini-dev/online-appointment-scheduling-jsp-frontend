@@ -39,7 +39,7 @@
           <input type="hidden" name="messageId" id="messageId" value="">
 
           <input type="email" class="form-control" placeholder="Email" 
-          id="email" value="adenty1@nsw.gov.au">
+          id="email">
           <!-- value="adenty1@nsw.gov.au" -->
           <div class="input-group-append">
             <div class="input-group-text">
@@ -49,7 +49,7 @@
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Password" 
-          id="pswd" value="123">
+          id="pswd">
           <!-- value="123" -->
           <div class="input-group-append">
             <div class="input-group-text">
