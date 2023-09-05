@@ -66,7 +66,7 @@ function empLoginFind() {
                 $("#user").val('');
 
                 $('#errorTitle').text("Employee Login Error Message");
-                $('#errorBody').text("Database Error!!!");
+                $('#errorBody').text("Email or Password is Incorrect. Try Again!!!");
                 $('#modal-danger').modal('toggle');
             }
         })
