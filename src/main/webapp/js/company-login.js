@@ -10,6 +10,8 @@ function empLoginFind() {
         $('#errorTitle').text("Employee Login Error Message");
         $('#errorBody').text("Can't Login with Empty Inputs!!!");
         $('#modal-danger').modal('toggle');
+        clearInputs();
+        
     } else {
         $.ajax({
             method:"POST",
