@@ -1,4 +1,21 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page session="true"%>
+<%
+  String user = session.getAttribute("userEmail").toString();
+  String type = session.getAttribute("userType").toString();
+  String msg = session.getAttribute("userMsg").toString();
+  //out.print(msg);
+
+  if(!(msg.equals("LOGIN-PASS")) && !(type.equals("2"))) {
+    response.sendRedirect("../companyLogin.jsp");
+  } else if (msg.equals("LOGIN-PASS") && type.equals("2") && !(user.equals(""))){
+
+  } else if (msg.equals("")) {
+    response.sendRedirect("../companyLogin.jsp");
+  } else {
+    response.sendRedirect("../companyLogin.jsp");
+  }
+%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from

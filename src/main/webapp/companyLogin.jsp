@@ -1,4 +1,9 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+  session.setAttribute("userEmail", "");
+  session.setAttribute("userType", "");
+  session.setAttribute("userMsg", "");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +39,7 @@
           <input type="hidden" name="messageId" id="messageId" value="">
 
           <input type="email" class="form-control" placeholder="Email" 
-          id="email">
+          id="email" value="adenty1@nsw.gov.au">
           <!-- value="adenty1@nsw.gov.au" -->
           <div class="input-group-append">
             <div class="input-group-text">
@@ -44,7 +49,7 @@
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Password" 
-          id="pswd">
+          id="pswd" value="123">
           <!-- value="123" -->
           <div class="input-group-append">
             <div class="input-group-text">
