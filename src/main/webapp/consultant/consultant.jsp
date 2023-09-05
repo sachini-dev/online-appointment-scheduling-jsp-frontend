@@ -152,6 +152,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          <div class="col-12">
+            <h2 class="w-100 p-3 mb-2 bg-secondary text-white text-center rounded">
+              Welcome to Online Appointment Scheduling Consultant Dashboard</h2>
+          </div>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
