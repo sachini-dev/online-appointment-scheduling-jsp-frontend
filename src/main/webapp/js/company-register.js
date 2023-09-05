@@ -1,6 +1,7 @@
 
 function clearInputs() {
-
+    $('#email').val('');
+    $('#pswd').val('');
 }
 //Employee Save
 function saveEmp() {
