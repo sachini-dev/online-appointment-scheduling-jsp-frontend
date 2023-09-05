@@ -43,7 +43,6 @@ function saveEmp() {
                     async:true,
                     success: function (data) {
                         if (data.code==="00") {
-                            //Login account create
                             //Employee type find
                             $.ajax({
                                 method:"POST",
@@ -52,10 +51,11 @@ function saveEmp() {
                                 async:true,
                                 success: function (data) {
                                     empType = data.content;
+                                    //Login account create
                                     $.ajax({
                                         method:"POST",
                                         contentType:"application/json",
-                                        url:"http://localhost:8080/oas/Emp/saveEmp",
+                                        url:"http://localhost:8080/oas/Emp/saveEmpLogin",
                                         async:true,
                                         data:JSON.stringify({
                                             "recId":"",
