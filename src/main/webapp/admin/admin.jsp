@@ -132,6 +132,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          <div class="col-12">
+            <div class="w-100">Welcome to Online Appointment Scheduling Admin Dashboard</div>
+          </div>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
