@@ -8,4 +8,3 @@
     String url = "../companyLogin.jsp";
     response.sendRedirect(url);
 %>
-<%@page session="false"%>
