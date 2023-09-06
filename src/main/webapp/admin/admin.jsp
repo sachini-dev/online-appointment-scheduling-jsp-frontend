@@ -8,7 +8,7 @@
 
   if(!(msg.equals("LOGIN-PASS")) && !(type.equals("1"))) {
     response.sendRedirect("../companyLogin.jsp");
-  } else if (msg.equals("LOGIN-PaSS") && type.equals("1") && !(user.equals(""))){
+  } else if (msg.equals("LOGIN-PASS") && type.equals("1") && !(user.equals(""))){
 
   } else if (msg.equals("")) {
     response.sendRedirect("../companyLogin.jsp");
