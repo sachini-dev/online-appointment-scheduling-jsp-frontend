@@ -16,6 +16,14 @@ function saveApp() {
     var addNIC = $('#addNIC').val();
     var addDescription = $('#addDescription').val();
 
+    const dateTime = new Date();
+    //2023091520
+    var year = String(dateTime.getFullYear);
+    var month = String(dateTime.getMonth);
+    var hours = String(dateTime.getHours);
+    var millis = String(dateTime.getMilliseconds);
+    var appointmentId = year+month+hours+millis;
+
     if (addName == "" | addTp == "" | addEmail == "" | addNIC == "" | 
     addDescription == "") {
         $('#errorTitle').text("Appointment Save Error Message");
@@ -25,30 +33,56 @@ function saveApp() {
         clearInputs();
 
     } else {
+        //Add Applicant
         $.ajax({
             method:"POST",
             contentType:"application/json",
             url:"http://localhost:8080/oas/Appl/saveAppl",
             async:true,
             data:JSON.stringify({
-                "empEmail":empAddEmail,
-                "empNIC":empAddNIC,
-                "empName":empAddName,
-                "empAddress":empAddAddress,
-                "empType":empAddType
+                "applicantEmail":addEmail,
+                "applicantName":addName,
+                "applicantNIC":addNIC,
+                "applicantTp":addTp
             }),
+            //Add Appoinment
             success: function (data) {
-                $('#successTitle').text("Appointment Save Success Message");
-                $('#successBody').text(data.message);
-                $('#modal-success').modal('toggle');
+                $.ajax({
+                    method:"POST",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/oas/App/saveApp",
+                    async:true,
+                    data:JSON.stringify({
+                        "appointmentId":appointmentId,
+                        "applicantEmail":addEmail,
+                        "appointmentDetails":addName,
+                        "appointmentType":"0",
+                    }),
+                    success: function (data) {
+                        $('#successTitle').text("Appointment Save Success Message");
+                        $('#successBody').text("Appointment Save Successfully. Appointment ID - "
+                        +appointmentId);
+                        $('#modal-success').modal('toggle');
+        
+                        clearInputs();
 
-                clearInputs();
+                    },
+                    error: function (xhr, exception,response) {
+                        //console.log("Appointment Save Error");
+                        var error = eval("(" + xhr.responseText + ")");
+                        $('#errorTitle').text("Appointment Save Error Message");
+                        $('#errorBody').text("Appointment Save Error!!!");
+                        $('#modal-danger').modal('toggle');
+        
+                        clearInputs();
+                    }
+                })
             },
             error: function (xhr, exception,response) {
                 //console.log("Appointment Save Error");
                 var error = eval("(" + xhr.responseText + ")");
                 $('#errorTitle').text("Appointment Save Error Message");
-                $('#errorBody').text(error.message);
+                $('#errorBody').text("Appointment Save Error!!!");
                 $('#modal-danger').modal('toggle');
 
                 clearInputs();
