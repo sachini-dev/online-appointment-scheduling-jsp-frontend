@@ -60,8 +60,8 @@ function saveApp() {
                     }),
                     success: function (data) {
                         $('#successTitle').text("Appointment Save Success Message");
-                        $('#successBody').text("Appointment Save Successfully. Appointment ID - "
-                        +appointmentId);
+                        $('#successBody').text("Appointment Save Successfully. "+
+                        "Appointment ID - "+appointmentId);
                         $('#modal-success').modal('toggle');
         
                         clearInputs();
@@ -79,7 +79,6 @@ function saveApp() {
                 })
             },
             error: function (xhr, exception,response) {
-                //console.log("Appointment Save Error");
                 var error = eval("(" + xhr.responseText + ")");
                 $('#errorTitle').text("Appointment Save Error Message");
                 $('#errorBody').text("Appointment Save Error!!!");
@@ -97,19 +96,20 @@ function getAllAppointments(){
 
     $.ajax({
         method:"POST",
-        url:"http://localhost:8080/oas/Emp/getAllEmpWA",
+        url:"http://localhost:8080/oas/App/getAllApp",
         async:true,
         success: function (data) {
             if (data.code==="00"){
-                $('#empAll').empty();
-                for (var empAll of data.content){
-                    var email = empAll.empEmail;
-                    var name = empAll.empName;
-                    var nic = empAll.empNIC;
-                    var address = empAll.empAddress;
-                    var typeNumber = empAll.empType;
+                $('#appAll').empty();
+                for (var AppAll of data.content){
+                    var appId = appAll.empEmail
+                    var email = appAll.empEmail;
+                    var name = appAll.empName;
+                    var nic = appAll.empNIC;
+                    var address = appAll.empAddress;
+                    var typeNumber = appAll.empType;
                     var typeWord;
-                    if (typeNumber == 2) {
+                    if (typeNumber == 0) {
                         typeWord = "Consultant";
                     } else {
                         typeWord = "Reception";
@@ -122,26 +122,26 @@ function getAllAppointments(){
                     <td>${address}</td>
                     <td>${typeWord}</td>
                     </tr>`;
-                    $('#empAll').append(rowData);
+                    $('#appAll').append(rowData);
                 }
             }
             if (data.code==="05" | data.code==="10"){
-                $('#empAll').empty();
-                for (var empAll of data.content){
-                    $('#empAll').empty();
+                $('#appAll').empty();
+                for (var appAll of data.content){
+                    $('#appAll').empty();
                     var rowData =`<tr>
                     <td colspan="5" style="text-align: center">Can't find any Records...</td>
                     </tr>`;
-                    $('#empAll').append(rowData);
+                    $('#appAll').append(rowData);
                 }
             }
         },
         error: function (xhr, exception) {
-            $('#empAll').empty();
+            $('#appAll').empty();
             var rowData =`<tr>
             <td colspan="5" style="text-align: center">Can't find any Records...</td>
             </tr>`;
-            $('#empAll').append(rowData);
+            $('#appAll').append(rowData);
         }
     })
 

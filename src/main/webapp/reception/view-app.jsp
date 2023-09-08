@@ -144,18 +144,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <!-- message view -->
-        <!-- <div class="row">
-          <div class="col-12">
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-              Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
-              entire
-              soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            </div>
-          </div>
-        </div> -->
         <div class="row mb-2">
           <div class="col">
             <a class="btn btn-primary" href="book-app.jsp" role="button">
@@ -185,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <th>Appointments Details</th>
                     </tr>
                   </thead>
-                  <tbody id="empAll">
+                  <tbody id="appAll">
                   </tbody>
                 </table>
               </div>
