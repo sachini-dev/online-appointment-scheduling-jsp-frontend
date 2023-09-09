@@ -18,11 +18,14 @@ function saveApp() {
 
     const dateTime = new Date();
     //2023091520
-    var year = String(dateTime.getFullYear);
-    var month = String(dateTime.getMonth);
-    var hours = String(dateTime.getHours);
-    var millis = String(dateTime.getMilliseconds);
-    var appointmentId = year+month+hours+millis;
+    var year = String(dateTime.getFullYear());
+    var month = String(dateTime.getMonth()+1);
+    var day = String(dateTime.getDate());
+    var hours = String(dateTime.getHours());
+    var millis = String(dateTime.getMilliseconds());
+    var appointmentId = year+month+hours+day+millis;
+    //console.log(appointmentId);
+
 
     if (addName == "" | addTp == "" | addEmail == "" | addNIC == "" | 
     addDescription == "") {
@@ -130,7 +133,7 @@ function getAllAppointments(){
                 for (var appAll of data.content){
                     $('#appAll').empty();
                     var rowData =`<tr>
-                    <td colspan="5" style="text-align: center">Can't find any Records...</td>
+                    <td colspan="6" style="text-align: center">Can't find any Records...</td>
                     </tr>`;
                     $('#appAll').append(rowData);
                 }
