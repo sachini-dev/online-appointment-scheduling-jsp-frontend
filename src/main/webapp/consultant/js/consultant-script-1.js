@@ -1,4 +1,7 @@
 getAllAppointments();
+var appIdAll;
+var applEmailAll;
+var appDescriptionAll;
 
 function clearInputs() {
     $('#appId').val('');
@@ -11,14 +14,9 @@ function clearInputs() {
 //Appointment Search Complete start
 function viewAppointment() {
 
-    var appId = $('#appId').val();
-    /* var applName = $('#applName').val();
-    var appId = $('#appId').val();
-    var appId = $('#appId').val();
-    var appId = $('#appId').val(); */
+    appIdAll = $('#appId').val();
 
-
-    if (appId == "") {
+    if (appIdAll == "") {
         $('#errorTitle').text("Appointment Search Error Message");
         $('#errorBody').text("Can't Search Data with Empty Appointment ID Input!!!");
         $('#modal-danger').modal('toggle');
@@ -29,16 +27,22 @@ function viewAppointment() {
         $.ajax({
             method:"POST",
             contentType:"application/json",
-            url:"http://localhost:8080/oas/App/getAppById/"+appId,
+            url:"http://localhost:8080/oas/App/getAppById/"+appIdAll,
             async:true,
             success: function (data) {
                 for (var appAll of data.content){
-                    var appId = appAll.appointmentId;
+                    var appId2 = appAll.appointmentId;
                     var name = appAll.applicantName;
                     var nic = appAll.applicantNIC;
-                    var  email = appAll.applicantEmail;
+
+                    var email = appAll.applicantEmail;
+                    applEmailAll = appAll.applicantEmail;
+
                     var telephone = appAll.applicantTp;
+
                     var appDetails = appAll.appointmentDetails;
+                    appDescriptionAll = appAll.appointmentDetails;
+
                     var typeNumber = appAll.appointmentType;
                     var typeWord;
                     if (typeNumber == 0) {
@@ -67,6 +71,60 @@ function viewAppointment() {
     
     
 }
+
+function updateApp() {
+    var appId3 = appIdAll;
+    var applName = $('#applName').val('');
+    var applTp = $('#applTp').val('');
+    var applNIC = $('#applNIC').val('');
+    var applEmail = applEmailAll;
+    var appDescription = appDescriptionAll;
+
+
+    if (appId3 == "" | applName == "" | applTp == "" | applNIC == "" | 
+    applEmail == "" | appDescription == "") {
+        $('#errorTitle').text("Appointment Review and Complete Error Message");
+        $('#errorBody').text("Can't Save Data with Empty Inputs!!!");
+        $('#modal-danger').modal('toggle');
+
+        clearInputs();
+
+    } else {
+        //Update Appointment
+        $.ajax({
+            method:"POST",
+            contentType:"application/json",
+            url:"http://localhost:8080/oas/App/updateApp",
+            async:true,
+            data:JSON.stringify({
+                "appointmentId":appId3,
+                "applicantEmail":applEmail,
+                "appointmentDetails":appDescription,
+                "appointmentType":"1"
+            }),
+            success: function (data) {
+                $('#successTitle').text("Appointment Review and Complete Success Message");
+                $('#successBody').text("Appointment Review and Complete Successfully. "+
+                "Appointment ID - "+appId3);
+                $('#modal-success').modal('toggle');
+
+                clearInputs();
+
+            },
+            error: function (xhr, exception,response) {
+                //console.log("Appointment Save Error");
+                var error = eval("(" + xhr.responseText + ")");
+                $('#errorTitle').text("Appointment Review and Complete Error Message");
+                $('#errorBody').text("Appointment Review and Complete Error!!!");
+                $('#modal-danger').modal('toggle');
+
+                clearInputs();
+            }
+        })
+    }
+
+}
+//Appointment Search Complete end
 
 //View All
 function getAllAppointments(){
@@ -241,3 +299,4 @@ function getCompletedAppointments(){
     })
 
 }
+

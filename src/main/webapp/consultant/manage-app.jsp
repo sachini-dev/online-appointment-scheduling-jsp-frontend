@@ -266,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="row">
                     <div class="col">
                       <button type="button" class="btn btn-primary w-100" 
-                      onclick="saveApp()">Review and Complete</button>
+                      onclick="updateApp()">Review and Complete</button>
                     </div>
                   </div>
                 </div>
@@ -278,6 +278,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+    
+    <!-- success message -->
+    <div class="modal fade" id="modal-success">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success">
+          <div class="modal-header">
+            <h4 class="modal-title" id="successTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="successBody"></p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <!-- error message -->
+    <div class="modal fade" id="modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+          <div class="modal-header">
+            <h4 class="modal-title" id="errorTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <p>One fine body&hellip;</p> -->
+            <p id="errorBody"></p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
   </div>
   <!-- /.content-wrapper -->
 
@@ -306,6 +354,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- Other JS file -->
-<script src="js/consultant-script.js"></script>
+<script src="js/consultant-script-1.js"></script>
 </body>
 </html>
