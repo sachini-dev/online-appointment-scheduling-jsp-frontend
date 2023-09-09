@@ -193,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <th>Appointment Details</th>
                     </tr>
                   </thead>
-                  <tbody id="empAll">
+                  <tbody id="appAll3">
                   </tbody>
                 </table>
               </div>
@@ -233,5 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- Other JS file -->
+<script src="js/consultant-script.js"></script>
 </body>
 </html>

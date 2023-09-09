@@ -212,7 +212,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- <input type="button" class="form-control" id="addNIC" 
                           value="Search"> -->
                         <button type="button" class="btn btn-primary w-100" 
-                      onclick="saveApp()">Search</button>
+                      onclick="viewAppointment()">Search</button>
                       </div>
                     </div>
                   </div>
@@ -307,5 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- Other JS file -->
+<script src="js/consultant-script.js"></script>
 </body>
 </html>

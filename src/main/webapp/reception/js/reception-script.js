@@ -58,8 +58,8 @@ function saveApp() {
                     data:JSON.stringify({
                         "appointmentId":appointmentId,
                         "applicantEmail":addEmail,
-                        "appointmentDetails":addName,
-                        "appointmentType":"0",
+                        "appointmentDetails":addDescription,
+                        "appointmentType":"0"
                     }),
                     success: function (data) {
                         $('#successTitle').text("Appointment Save Success Message");
@@ -104,26 +104,27 @@ function getAllAppointments(){
         success: function (data) {
             if (data.code==="00"){
                 $('#appAll').empty();
-                for (var AppAll of data.content){
-                    var appId = appAll.empEmail
-                    var email = appAll.empEmail;
-                    var name = appAll.empName;
-                    var nic = appAll.empNIC;
-                    var address = appAll.empAddress;
-                    var typeNumber = appAll.empType;
+                for (var appAll of data.content){
+                    var appId = appAll.appointmentId;
+                    var name = appAll.applicantName;
+                    var nic = appAll.applicantNIC;
+                    var telephone = appAll.applicantTp;
+                    var appDetails = appAll.appointmentDetails;
+                    var typeNumber = appAll.appointmentType;
                     var typeWord;
                     if (typeNumber == 0) {
-                        typeWord = "Consultant";
+                        typeWord = "Pending";
                     } else {
-                        typeWord = "Reception";
+                        typeWord = "Completed";
                     }
 
                     var rowData =`<tr>
-                    <td>${email}</td>
+                    <td>${appId}</td>
+                    <td>${typeWord}</td>
                     <td>${name}</td>
                     <td>${nic}</td>
-                    <td>${address}</td>
-                    <td>${typeWord}</td>
+                    <td>${telephone}</td>
+                    <td>${appDetails}</td>
                     </tr>`;
                     $('#appAll').append(rowData);
                 }
@@ -142,7 +143,7 @@ function getAllAppointments(){
         error: function (xhr, exception) {
             $('#appAll').empty();
             var rowData =`<tr>
-            <td colspan="5" style="text-align: center">Can't find any Records...</td>
+            <td colspan="6" style="text-align: center">Can't find any Records...</td>
             </tr>`;
             $('#appAll').append(rowData);
         }
