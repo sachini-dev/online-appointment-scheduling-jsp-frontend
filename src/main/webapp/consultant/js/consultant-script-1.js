@@ -10,6 +10,9 @@ function clearInputs() {
     $('#applNIC').val('');
     $('#applEmail').val('');
     $('#appDescription').val('');
+    appIdAll = "";
+    applEmailAll = "";
+    appDescriptionAll = "";
 }
 //Appointment Search Complete start
 function viewAppointment() {
