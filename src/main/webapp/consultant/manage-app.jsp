@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+          <!-- appl icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="consultant.jsp" class="nav-link active">
@@ -201,16 +201,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="row">
                     <div class="col-8">
                       <div class="form-group">
-                        <label for="addName">Appointments ID</label>
-                        <input type="text" class="form-control" id="addName" 
+                        <label for="appId">Appointments ID</label>
+                        <input type="text" class="form-control" id="appId" 
                         placeholder="Enter Appointments ID">
                       </div>
                     </div>
                     <div class="col-4">
                       <div class="form-group">
-                        <label for="addNIC">&nbsp;</label>
-                        <!-- <input type="button" class="form-control" id="addNIC" 
-                          value="Search"> -->
+                        <label>&nbsp;</label>
                         <button type="button" class="btn btn-primary w-100" 
                       onclick="viewAppointment()">Search</button>
                       </div>
@@ -220,15 +218,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="addTp">Applicant Name</label>
-                        <input type="text" class="form-control" id="addTp" 
+                        <label for="applName">Applicant Name</label>
+                        <input type="text" class="form-control" id="applName" 
                         placeholder="Applicant Name">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="addTp">Applicant Telephone</label>
-                        <input type="text" class="form-control" id="addTp" 
+                        <label for="applTp">Applicant Telephone</label>
+                        <input type="text" class="form-control" id="applTp" 
                         placeholder="Applicant Telephone">
                       </div>
                     </div>
@@ -237,15 +235,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="addEmail">Applicant NIC</label>
-                        <input type="email" class="form-control" id="addEmail" 
+                        <label for="applNIC">Applicant NIC</label>
+                        <input type="email" class="form-control" id="applNIC" 
                         placeholder="Applicant NIC">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="addNIC">Applicant Email</label>
-                        <input type="text" class="form-control" id="addNIC" 
+                        <label for="applEmail">Applicant Email</label>
+                        <input type="text" class="form-control" id="applEmail" 
                         placeholder="Applicant Email">
                       </div>
                     </div>
@@ -254,10 +252,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="addDescription">Appointment Details</label>
+                        <label for="appDescription">Appointment Details</label>
                         <textarea class="form-control" rows="3" 
                         placeholder="Appointment Details...." 
-                        id="addDescription"></textarea>
+                        id="appDescription"></textarea>
                       </div>
                     </div>
                   </div>

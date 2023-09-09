@@ -1,18 +1,28 @@
-getAllAppointments();
+
 getPendingAppointments();
-getCompletedAppointments();
+
 
 function clearInputs() {
-   
+    $('#appId').val('');
+    $('#applName').val('');
+    $('#applTp').val('');
+    $('#applNIC').val('');
+    $('#applEmail').val('');
+    $('#appDescription').val('');
 }
 //Appointment Search Complete start
 function viewAppointment() {
 
-    var empAddEmail = $('#empAddEmail2').val();
+    var appId = $('#appId').val();
+    /* var applName = $('#applName').val();
+    var appId = $('#appId').val();
+    var appId = $('#appId').val();
+    var appId = $('#appId').val(); */
 
-    if (empAddEmail == "") {
-        $('#errorTitle').text("Employee Search Error Message");
-        $('#errorBody').text("Can't Search Data with Empty Email Input!!!");
+
+    if (appId == "") {
+        $('#errorTitle').text("Appointment Search Error Message");
+        $('#errorBody').text("Can't Search Data with Empty Appointment ID Input!!!");
         $('#modal-danger').modal('toggle');
 
         clearInputs();
@@ -21,32 +31,35 @@ function viewAppointment() {
         $.ajax({
             method:"POST",
             contentType:"application/json",
-            url:"http://localhost:8080/oas/Emp/viewEmpByEmail/"+empAddEmail,
+            url:"http://localhost:8080/oas/App/getAppById/"+appId,
             async:true,
             success: function (data) {
-                for (var empList of data.content) {
-                    var empName = empList.empName;
-                    var empAddress = empList.empAddress;
-                    empEmailMain = empList.empEmail;
-                    empNICMain = empList.empNIC;
-                    var empType = empList.empType;
-                    var empTypeName = '';
-                    if (empType == 2) {
-                        empTypeName = "Consultant";
+                for (var appAll of data.content){
+                    var appId = appAll.appointmentId;
+                    var name = appAll.applicantName;
+                    var nic = appAll.applicantNIC;
+                    var  email = appAll.applicantEmail;
+                    var telephone = appAll.applicantTp;
+                    var appDetails = appAll.appointmentDetails;
+                    var typeNumber = appAll.appointmentType;
+                    var typeWord;
+                    if (typeNumber == 0) {
+                        typeWord = "Pending";
                     } else {
-                        empTypeName = "Reception";
+                        typeWord = "Completed";
                     }
         
-                    $('#empAddName2').val(empName);
-                    $('#empAddAddress2').val(empAddress);
-                    $('#empAddType2').val(empTypeName);
+                    $('#applName').val(name);
+                    $('#applTp').val(telephone);
+                    $('#applNIC').val(nic);
+                    $('#applEmail').val(email);
+                    $('#appDescription').val(appDetails);
                 }
     
             },
             error: function (xhr, exception,response) {
-                var error = eval("(" + xhr.responseText + ")");
-                $('#errorTitle').text("Employee Search Error Message");
-                $('#errorBody').text(error.message);
+                $('#errorTitle').text("Appointment Search Error Message");
+                $('#errorBody').text("Can't Find  Appointment ID!!!");
                 $('#modal-danger').modal('toggle');
     
                 clearInputs();
