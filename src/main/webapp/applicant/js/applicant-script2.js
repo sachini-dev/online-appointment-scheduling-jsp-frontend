@@ -1,6 +1,8 @@
+var pageEmail = $('#userEmail').val();
+getAllAppointments();
+
 function clearInputs() {
-    $('#email').val('');
-    $('#pswd').val('');
+
 }
 function LoginFind() {
     var Email = $('#email').val();
@@ -68,4 +70,59 @@ function LoginFind() {
         })
     }
     
+}
+
+//View All
+function getAllAppointments(){
+
+    
+    $.ajax({
+        method:"POST",
+        url:"http://localhost:8080/oas/App/getAppByTypeEmail/0/"+pageEmail,
+        async:true,
+        success: function (data) {
+            if (data.code==="00"){
+                $('#appAll').empty();
+                for (var appAll of data.content){
+                    var appId = appAll.appointmentId;
+                    var name = appAll.applicantName;
+                    var nic = appAll.applicantNIC;
+                    var  email = appAll.applicantEmail;
+                    var telephone = appAll.applicantTp;
+                    var appDetails = appAll.appointmentDetails;
+                    var typeNumber = appAll.appointmentType;
+                    var typeWord;
+                    if (typeNumber == 0) {
+                        typeWord = "Pending";
+                    } else {
+                        typeWord = "Completed";
+                    }
+
+                    var rowData =`<tr>
+                    <td>${appId}</td>
+                    <td>${appDetails}</td>
+                    </tr>`;
+                    $('#appAll').append(rowData);
+                }
+            }
+            if (data.code==="05" | data.code==="10"){
+                $('#appAll').empty();
+                for (var appAll of data.content){
+                    $('#appAll').empty();
+                    var rowData =`<tr>
+                    <td colspan="2" style="text-align: center">Can't find any Records...</td>
+                    </tr>`;
+                    $('#appAll').append(rowData);
+                }
+            }
+        },
+        error: function (xhr, exception) {
+            $('#appAll').empty();
+            var rowData =`<tr>
+            <td colspan="2" style="text-align: center">Can't find any Records...</td>
+            </tr>`;
+            $('#appAll').append(rowData);
+        }
+    })
+
 }

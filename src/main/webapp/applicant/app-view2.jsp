@@ -1,4 +1,24 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page session="true"%>
+<%
+  String user = session.getAttribute("userEmail").toString();
+  String pageEmail = "<input type='hidden' id='userEmail' name='userEmail' value='"+user+"'>";
+
+  String msg = session.getAttribute("userMsg").toString();
+  String pageMsg = "<input type='hidden' id='userMsg' name='userMsg' value='"+msg+"'>";
+
+  //out.print(msg);
+
+  if(!(msg.equals("LOGIN-PASS"))) {
+    response.sendRedirect("app-login.jsp");
+  } else if (msg.equals("LOGIN-PASS")){
+
+  } else if (msg.equals("")) {
+    response.sendRedirect("app-login.jsp");
+  } else {
+    response.sendRedirect("app-login.jsp");
+  }
+%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -151,7 +171,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <!-- message view -->
+        <form id="page-data">
+          <% 
+            out.print(pageEmail+pageMsg);
+          %>
+        </form>
         
         <div class="row">
           <div class="col-12">
@@ -172,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <th>Appointment Details</th>
                     </tr>
                   </thead>
-                  <tbody id="empAll">
+                  <tbody id="appAll">
                   </tbody>
                 </table>
               </div>
@@ -212,5 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- Other JS file -->
+<script src="js/applicant-script2.js"></script>
 </body>
 </html>

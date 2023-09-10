@@ -1,4 +1,24 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page session="true"%>
+<%
+  String user = session.getAttribute("userEmail").toString();
+  String pageEmail = "<input type='hidden' id='userEmail' name='userEmail' value='"+user+"'>";
+
+  String msg = session.getAttribute("userMsg").toString();
+  String pageMsg = "<input type='hidden' id='userMsg' name='userMsg' value='"+msg+"'>";
+
+  //out.print(msg);
+
+  if(!(msg.equals("LOGIN-PASS"))) {
+    response.sendRedirect("app-login.jsp");
+  } else if (msg.equals("LOGIN-PASS")){
+
+  } else if (msg.equals("")) {
+    response.sendRedirect("app-login.jsp");
+  } else {
+    response.sendRedirect("app-login.jsp");
+  }
+%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -151,18 +171,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <!-- message view -->
-        <!-- <div class="row">
-          <div class="col-12">
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-              Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
-              entire
-              soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            </div>
-          </div>
-        </div> -->
+        <form id="page-data">
+          <% 
+            out.print(pageEmail+pageMsg);
+          %>
+        </form>
         <div class="row mb-2">
           <div class="col">
             <a class="btn btn-primary" href="app-view.jsp" role="button">
@@ -210,6 +223,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+
+    <!-- success message -->
+    <div class="modal fade" id="modal-success">
+      <div class="modal-dialog">
+        <div class="modal-content bg-success">
+          <div class="modal-header">
+            <h4 class="modal-title" id="successTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="successBody"></p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <!-- error message -->
+    <div class="modal fade" id="modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+          <div class="modal-header">
+            <h4 class="modal-title" id="errorTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <p>One fine body&hellip;</p> -->
+            <p id="errorBody"></p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
   </div>
   <!-- /.content-wrapper -->
 
@@ -237,5 +297,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- Other JS file -->
+<script src="js/applicant-script1.js"></script>
 </body>
 </html>

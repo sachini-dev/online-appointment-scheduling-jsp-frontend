@@ -129,6 +129,6 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- Other JS file -->
-<script src="js/applicant-script.js"></script>
+<script src="js/applicant-script1.js"></script>
 </body>
 </html>
