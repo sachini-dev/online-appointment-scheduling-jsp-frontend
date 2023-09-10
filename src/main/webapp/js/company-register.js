@@ -49,8 +49,11 @@ function saveEmp() {
                                 url:"http://localhost:8080/oas/Emp/empType/"+empEmail,
                                 async:true,
                                 success: function (data) {
-                                    empType = data.content.empType;
+                                    //console.log(empType);
                                     //Login account create
+                                    for (var empList of data.content) {
+                                        empType = empList.empType;
+                                    }
                                     $.ajax({
                                         method:"POST",
                                         contentType:"application/json",
@@ -94,7 +97,7 @@ function saveEmp() {
                     error: function (xhr, exception,response) {
                         var error = eval("(" + xhr.responseText + ")");
                         $('#errorTitle').text("Employee New Login Account Error Message");
-                        $('#errorBody').text("Employee doesn't exist!! 1234");
+                        $('#errorBody').text("System Error. Try agian!!");
                         $('#modal-danger').modal('toggle');
             
                         clearInputs();
