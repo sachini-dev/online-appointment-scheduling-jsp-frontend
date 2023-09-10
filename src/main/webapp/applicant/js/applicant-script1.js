@@ -4,6 +4,14 @@ getAllAppointments();
 function clearInputs() {
     $('#addDescription').val('');
 }
+function clearInputs2() {
+    $('#addName').val('');
+    $('#addEmail').val('');
+    $('#addNIC').val('');
+    $('#addTp').val('');
+    $('#addPass').val('');
+
+}
 function LoginFind() {
     var Email = $('#email').val();
     var Pass = $('#pswd').val();
@@ -169,4 +177,74 @@ function saveApp() {
             clearInputs();
         }
     })
+}
+
+//Applicant Save
+function saveApplicant() {
+    var addName = $('#addName').val();
+    var addEmail = $('#addEmail').val();
+    var addNIC = $('#addNIC').val();
+    var addTp = $('#addTp').val();
+    var addPass = $('#addPass').val();
+
+    if (addName == "" | addTp == "" | addEmail == "" | addNIC == "" | 
+    addPass == "") {
+        $('#errorTitle').text("Applicant Registration Error Message");
+        $('#errorBody').text("Can't Register with Empty Inputs!!!");
+        $('#modal-danger').modal('toggle');
+
+        clearInputs2();
+
+    } else {
+        //Add Login
+        $.ajax({
+            method:"POST",
+            contentType:"application/json",
+            url:"http://localhost:8080/oas/Appl/saveLogin",
+            async:true,
+            data:JSON.stringify({
+                "applicantEmail":addEmail,
+                "applicantPassword":addPass,
+            }),
+            success: function (data) {
+                //Add Applicant
+                $.ajax({
+                    method:"POST",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/oas/Appl/saveAppl2",
+                    async:true,
+                    data:JSON.stringify({
+                        "applicantEmail":addEmail,
+                        "applicantName":addName,
+                        "applicantNIC":addNIC,
+                        "applicantTp":addTp
+                    }),
+                    //Add Appoinment
+                    success: function (data) {
+                        $('#successTitle').text("Applicant Registration Success Message");
+                        $('#successBody').text("Applicant Registration Successfully!!!");
+                        $('#modal-success').modal('toggle');
+            
+                        clearInputs2();
+                    },
+                    error: function (xhr, exception,response) {
+                        var error = eval("(" + xhr.responseText + ")");
+                        $('#errorTitle').text("Applicant Registration Error Message");
+                        $('#errorBody').text("Applicant Registration Error!!!");
+                        $('#modal-danger').modal('toggle');
+
+                        clearInputs2();
+                    }
+                })
+    
+            },
+            error: function (xhr, exception,response) {
+                $('#errorTitle').text("Applicant Registration Error Message");
+                $('#errorBody').text("Applicant already have an account!!!");
+                $('#modal-danger').modal('toggle');
+    
+                clearInputs2();
+            }
+        })
+    }
 }

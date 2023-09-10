@@ -24,11 +24,12 @@
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../index.jsp" method="post">
+      <form action="" method="post">
         <div class="row">
           <div class="col">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Name">
+              <input type="text" class="form-control" placeholder="Name" 
+              id="addName" name="addName">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>
@@ -40,7 +41,8 @@
         <div class="row">
           <div class="col">
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email">
+              <input type="email" class="form-control" placeholder="Email" 
+              id="addEmail" name="addEmail">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-envelope"></span>
@@ -52,7 +54,8 @@
         <div class="row">
           <div class="col-6">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="NIC">
+              <input type="text" class="form-control" placeholder="NIC" 
+              id="addNIC" name="addNIC">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-id-card"></span>
@@ -62,7 +65,8 @@
           </div>
           <div class="col-6">
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Telephone">
+              <input type="text" class="form-control" placeholder="Telephone" 
+              id="addTp" name="addTp">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-phone"></span>
@@ -72,7 +76,8 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" 
+          id="addPass" name="addPass">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -81,7 +86,8 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="button" class="btn btn-primary btn-block">Register</button>
+            <button type="button" class="btn btn-primary btn-block" 
+            onclick="saveApplicant()">Register</button>
           </div>
           <!-- /.col -->
         </div>
@@ -93,6 +99,54 @@
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
+
+  <!-- success message -->
+  <div class="modal fade" id="modal-success">
+    <div class="modal-dialog">
+      <div class="modal-content bg-success">
+        <div class="modal-header">
+          <h4 class="modal-title" id="successTitle"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="successBody"></p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- error message -->
+  <div class="modal fade" id="modal-danger">
+    <div class="modal-dialog">
+      <div class="modal-content bg-danger">
+        <div class="modal-header">
+          <h4 class="modal-title" id="errorTitle"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <p>One fine body&hellip;</p> -->
+          <p id="errorBody"></p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-outline-light">Save changes</button> -->
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
 </div>
 <!-- /.register-box -->
 
