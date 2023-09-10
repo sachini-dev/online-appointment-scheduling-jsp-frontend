@@ -49,7 +49,7 @@ function saveEmp() {
                                 url:"http://localhost:8080/oas/Emp/empType/"+empEmail,
                                 async:true,
                                 success: function (data) {
-                                    empType = data.content;
+                                    empType = data.content.empType;
                                     //Login account create
                                     $.ajax({
                                         method:"POST",

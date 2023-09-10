@@ -1,6 +1,7 @@
 getAllEmployees();
 var empEmailMain;
 var empNICMain;
+var empTypeMain;
 
 function clearInputs() {
     $('#empAddName').val('');
@@ -28,6 +29,7 @@ function saveEmp() {
     var empAddAddress = $('#empAddAddress').val();
     var empAddNIC = $('#empAddNIC').val();
     var empAddType = $('#empAddType').val();
+    //console.log(empAddType);
 
     if (empAddName == "" | empAddEmail == "" | empAddNIC == "" | empAddAddress == "") {
         $('#errorTitle').text("Employee Save Error Message");
@@ -97,6 +99,7 @@ function viewEmpEmail() {
                     empEmailMain = empList.empEmail;
                     empNICMain = empList.empNIC;
                     var empType = empList.empType;
+                    empTypeMain = empType;
                     var empTypeName = '';
                     if (empType == 2) {
                         empTypeName = "Consultant";
@@ -148,6 +151,7 @@ function viewEmpNIC() {
                     empEmailMain = empList.empEmail;
                     empNICMain = empList.empNIC;
                     var empType = empList.empType;
+                    empTypeMain = empType;
                     var empTypeName = '';
                     if (empType == 2) {
                         empTypeName = "Consultant";
@@ -181,6 +185,7 @@ function updateEmp() {
     var empAddEmail = empEmailMain;
     var empAddAddress = $('#empAddAddress2').val();
     var empAddNIC = empNICMain;
+    var empAddType = empTypeMain;
 
     if (empAddName == "" | empAddEmail == "" | empAddNIC == "" | empAddAddress == "") {
         $('#errorTitle').text("Employee Update Error Message");
@@ -199,7 +204,8 @@ function updateEmp() {
                 "empEmail":empAddEmail,
                 "empNIC":empAddNIC,
                 "empName":empAddName,
-                "empAddress":empAddAddress
+                "empAddress":empAddAddress,
+                "empType":empAddType
             }),
             success: function (data) {
                 $('#successTitle').text("Employee Update Success Message");
@@ -244,20 +250,25 @@ function viewEmpEmail3() {
             async:true,
             success: function (data) {
 
-                var empList = data.content
-                var empName = empList.empName;
-                var empAddress = empList.empAddress;
-                empEmailMain = empList.empEmail;
-                empNICMain = empList.empNIC;
-                var empType = empList.empType;
-                var empTypeName = '';
-                if (empType == 2) {
-                    empTypeName = "Consultant";
-                } else {
-                    empTypeName = "Reception";
+                for (var empList of data.content) {
+                    var empName = empList.empName;
+                    var empAddress = empList.empAddress;
+                    empEmailMain = empList.empEmail;
+                    empNICMain = empList.empNIC;
+                    var empType = empList.empType;
+                    empTypeMain = empType;
+                    var empTypeName = '';
+                    if (empType == 2) {
+                        empTypeName = "Consultant";
+                    } else {
+                        empTypeName = "Reception";
+                    }
+        
+                    $('#empAddName3').val(empName);
+                    $('#empAddAddress3').val(empAddress);
+                    $('#empAddType3').val(empTypeName);
                 }
     
-                clearInputs();
             },
             error: function (xhr, exception,response) {
                 //console.log("Employee Save Error");
@@ -298,6 +309,7 @@ function viewEmpNIC3() {
                     empEmailMain = empList.empEmail;
                     empNICMain = empList.empNIC;
                     var empType = empList.empType;
+                    empTypeMain = empType;
                     var empTypeName = '';
                     if (empType == 2) {
                         empTypeName = "Consultant";
